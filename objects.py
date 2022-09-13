@@ -4,38 +4,72 @@ from PyQt5.QtWidgets import  QWidget, QPushButton
 from PyQt5.QtGui import QIcon,QPixmap,QPainter
 from PyQt5.QtCore import pyqtSlot, Qt, QPoint, QSize
 
-class MediaButton(QPushButton):
+
+
+class PlayButton(QPushButton):
     def __init__(self):
        super().__init__()
-       x=0
-       y=0
-       height=10
-       width=10
-       shape=0
-       img="test.jpg"
-       self.func= "play_pause"
-       self.setGeometry(x,y,height,width)
-       self.setIcon(QIcon(img))
        self.clicked.connect(self.on_click)
 
     @pyqtSlot()
     def on_click(self):
-        self.run(self.func) 
+        funcs.play_pause()
 
-    def run(self,func):
-        match func:
-            case "play_pause":
-                funcs.play_pause()
-            case "random":
-                funcs.random()
-            case "shuffle":
-                funcs.shuffle()
-            case "stop":
-                funcs.stop()
-            case "prev":
-                funcs.prev()
-            case "next":
-                funcs.next()
+class RandomButton(QPushButton):
+    def __init__(self):
+       super().__init__()
+       self.clicked.connect(self.on_click)
+
+    @pyqtSlot()
+    def on_click(self):
+        funcs.random()
+
+class StopButton(QPushButton):
+    def __init__(self):
+       super().__init__()
+       self.clicked.connect(self.on_click)
+
+    @pyqtSlot()
+    def on_click(self):
+        funcs.stop()
+
+class NextButton(QPushButton):
+    def __init__(self):
+       super().__init__()
+       self.clicked.connect(self.on_click)
+
+    @pyqtSlot()
+    def on_click(self):
+        funcs.next()
+
+class PrevButton(QPushButton):
+    def __init__(self):
+       super().__init__()
+       self.clicked.connect(self.on_click)
+
+    @pyqtSlot()
+    def on_click(self):
+        funcs.prev()
+
+class shuffleButton(QPushButton):
+    def __init__(self):
+       super().__init__()
+       self.clicked.connect(self.on_click)
+
+    @pyqtSlot()
+    def on_click(self):
+        funcs.shuffle()
+
+def MediaButton(X=0,Y=0,height=0,width=0,btn=PlayButton()):
+       #btn=MediaButton()
+       x=X
+       y=Y
+       height=height
+       width=width
+       img="test.jpg"
+       btn.setGeometry(x,y,height,width)
+       btn.setIcon(QIcon(img))
+       return btn
 
 class window(QWidget):
     def __init__(self):
