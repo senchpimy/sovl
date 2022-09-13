@@ -60,15 +60,10 @@ class shuffleButton(QPushButton):
     def on_click(self):
         funcs.shuffle()
 
-def MediaButton(X=0,Y=0,height=0,width=0,btn=PlayButton()):
-       #btn=MediaButton()
-       x=X
-       y=Y
-       height=height
-       width=width
-       img="test.jpg"
+def MediaButton(x=0,y=0,height=0,width=0,btn=PlayButton(),img="test.jpg"):
        btn.setGeometry(x,y,height,width)
        btn.setIcon(QIcon(img))
+       btn.setStyleSheet("background-image : url({});".format(img))
        return btn
 
 class window(QWidget):
