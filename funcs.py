@@ -1,5 +1,4 @@
 import os
-from PIL import Image
 import subprocess
 
 def status():
@@ -25,11 +24,3 @@ def random():
 def shuffle():
     os.system("mpc shuffle")
 
-def image_resize(height,width, image):
-    img=Image.open(image)
-    newimg=img.resize((height,width))
-    newimg.save("resized"+image)
-
-def image_size(image):
-    img=Image.open(image)
-    return(img.size)

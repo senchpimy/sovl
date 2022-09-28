@@ -1,83 +1,43 @@
-
 import funcs
-from PyQt5.QtWidgets import  QWidget, QPushButton
+import logging
+from PyQt5.QtWidgets import  QWidget, QPushButton, QMainWindow
 from PyQt5.QtGui import QIcon,QPixmap,QPainter
-from PyQt5.QtCore import pyqtSlot, Qt, QPoint, QSize
+from PyQt5.QtCore import  Qt, QPoint, QSize
+icon="/usr/bin/sovl/icon.jpg"
 
-
-
-class PlayButton(QPushButton):
-    def __init__(self):
-       super().__init__()
-       self.clicked.connect(self.on_click)
-
-    @pyqtSlot()
-    def on_click(self):
-        funcs.play_pause()
-
-class RandomButton(QPushButton):
-    def __init__(self):
-       super().__init__()
-       self.clicked.connect(self.on_click)
-
-    @pyqtSlot()
-    def on_click(self):
-        funcs.random()
-
-class StopButton(QPushButton):
-    def __init__(self):
-       super().__init__()
-       self.clicked.connect(self.on_click)
-
-    @pyqtSlot()
-    def on_click(self):
-        funcs.stop()
-
-class NextButton(QPushButton):
-    def __init__(self):
-       super().__init__()
-       self.clicked.connect(self.on_click)
-
-    @pyqtSlot()
-    def on_click(self):
-        funcs.next()
-
-class PrevButton(QPushButton):
-    def __init__(self):
-       super().__init__()
-       self.clicked.connect(self.on_click)
-
-    @pyqtSlot()
-    def on_click(self):
-        funcs.prev()
-
-class shuffleButton(QPushButton):
-    def __init__(self):
-       super().__init__()
-       self.clicked.connect(self.on_click)
-
-    @pyqtSlot()
-    def on_click(self):
-        funcs.shuffle()
-
-def MediaButton(x=0,y=0,height=0,width=0,btn=PlayButton(),img="test.jpg"):
+def MediaButton(btn,x=10,y=10,height=10,width=10,img="test.jpg",func="play_pause"):
        btn.setGeometry(x,y,height,width)
        btn.setIcon(QIcon(img))
        btn.setStyleSheet("background-image : url({});".format(img))
-       return btn
+       if func=="play_pause":
+            btn.clicked.connect(funcs.play_pause)
+
+       elif func=="shuffle":
+           btn.clicked.connect(funcs.shuffle)
+
+       elif func=="prev":
+           btn.clicked.connect(funcs.prev)
+
+       elif func=="next":
+           btn.clicked.connect(funcs.next)
+
+       elif func=="stop":
+           btn.clicked.connect(funcs.shuffle)
+
+       elif func=="random":
+           btn.clicked.connect(funcs.random)
+
+       else:
+           logging.error("function for the button not suported or invalid")
 
 class window(QWidget):
     def __init__(self):
         super().__init__()
         self.setWindowTitle("Sovl Music player")
-        self.setWindowIcon(QIcon("test.jpg"))
-        self.setGeometry(100, 100, 280, 80)
         self.setWindowFlags(Qt.FramelessWindowHint)
         self.setAttribute(Qt.WA_TranslucentBackground)
-    def sizeHint(self):
-        return QSize(720, 720) # Set this to the exact image resolution
 
-    def paintEvent(self, event):
+    def paintEvent(self,event ):
         qp = QPainter()
         qp.begin(self)    
         pixmap = QPixmap()
@@ -85,10 +45,16 @@ class window(QWidget):
         qp.drawPixmap(QPoint(0, 0), pixmap)    
         qp.end()
 
-    def mousePressEvent(self, event):
-        self.oldPos = event.globalPos()
 
-    def mouseMoveEvent(self, event):
-        delta = QPoint(event.globalPos() - self.oldPos)
-        self.move(self.x() + delta.x(), self.y() + delta.y())
-        self.oldPos = event.globalPos()
+    def WindowConfig(self,config):
+        image=config["Image"]
+        self.setWindowIcon(QIcon(icon))
+        self.setGeometry(config["X"], config["Y"], config["Height"],config["Width"])
+        if image.endswith(".png"):
+            self.setAttribute(Qt.WA_TranslucentBackground)
+            qp = QPainter()
+            qp.begin(self)    
+            pixmap = QPixmap()
+            pixmap.load(image)
+            qp.drawPixmap(QPoint(0, 0), pixmap)    
+            qp.end()
