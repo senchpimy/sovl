@@ -1,8 +1,8 @@
 import funcs
 import logging
-from PyQt5.QtWidgets import  QWidget, QPushButton, QMainWindow
+from PyQt5.QtWidgets import  QMainWindow
 from PyQt5.QtGui import QIcon,QPixmap,QPainter
-from PyQt5.QtCore import  Qt, QPoint, QSize
+from PyQt5.QtCore import  Qt, QPoint
 icon="/usr/bin/sovl/icon.jpg"
 
 def MediaButton(btn,x=10,y=10,height=10,width=10,img="test.jpg",func="play_pause",shape="Default"):
@@ -44,10 +44,9 @@ class window(QMainWindow):
         qp = QPainter()
         qp.begin(self)    
         pixmap = QPixmap()
-        pixmap.load('fondotest.png')
+        pixmap.load(self.Image)
         qp.drawPixmap(QPoint(0, 0), pixmap)    
         qp.end()
-
 
     def WindowConfig(self,config):
         image=config["Image"]
@@ -55,13 +54,7 @@ class window(QMainWindow):
         self.setGeometry(config["X"], config["Y"], config["Height"],config["Width"])
         if image.endswith(".png"):
             self.setAttribute(Qt.WA_TranslucentBackground)
-            qp = QPainter()
-            qp.begin(self)    
-            pixmap = QPixmap()
-            pixmap.load(image)
-            qp.drawPixmap(QPoint(0, 0), pixmap)    
-            qp.end()
+            self.Image=image
             return False,""
         else:
-#            string=f"background-image : url('{image}');"
             return True,image
