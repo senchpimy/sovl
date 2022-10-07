@@ -11,18 +11,24 @@ def read_config(path):
     buttons=[]
 
     window={"X":10,"Y":10,"Height":10,"Width":10,"Image":"Default.jpg","Icon":"Default.jpg"}
-    config = configparser.ConfigParser()
+    config = configparser.RawConfigParser()
     config.read(path)
+    window["X"]=int(config["Window"]["X"])
+    window["Y"]=int(config["Window"]["Y"])
+    window["Height"]=int(config["Window"]["Height"])
+    window["Width"]=int(config["Window"]["Width"])
+    window["Image"]=config["Window"]["Image"]
+    window["Icon"]=config["Window"]["Icon"]
     
-    try:
-        window["X"]=int(config["Window"]["X"])
-        window["Y"]=int(config["Window"]["Y"])
-        window["Height"]=int(config["Window"]["Height"])
-        window["Width"]=int(config["Window"]["Width"])
-        window["Image"]=config["Window"]["Func"]
-        window["Icon"]=config["Window"]["Icon"]
-    except:
-        pass 
+#    try:
+#        window["X"]=int(config["Window"]["X"])
+#        window["Y"]=int(config["Window"]["Y"])
+#        window["Height"]=int(config["Window"]["Height"])
+#        window["Width"]=int(config["Window"]["Width"])
+#        window["Image"]=config["Window"]["Func"]
+#        window["Icon"]=config["Window"]["Icon"]
+#    except:
+#        pass 
 
     for i in config.sections():
         if i=="Window":
@@ -37,13 +43,22 @@ def read_config(path):
 def image_resize(image,height,withd):
     img=Image.open(image)
     new_img=img.resize((height,withd))
-    new_img_path=path_config+"resized"+image
+    filename="".join(image.split("/")[-1:])
+    new_img_path=path_config+"resized"+filename
     new_img.save(new_img_path)
     return(new_img_path)
 
 def image_config(window_config):
-    image_already_rezised=path_config+"resized"+window_config["Image"]
-    if os.path.exists(image_already_rezised):
+    filename="".join(window_config["Image"].split("/")[-1:])
+    image_already_rezised=path_config+"resized"+filename
+    try:
+        image_exist = Image.open(image_already_rezised)
+        height,width= image_exist.size
+    except:
+        image_exist = False
+        height, width= 0, 0
+
+    if image_exist and height==window_config["Height"] and width==window_config["Width"]:
         window_config["Image"]=image_already_rezised
     else:
         image_resize(window_config["Image"],window_config["Height"],window_config["Width"])

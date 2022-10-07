@@ -34,12 +34,11 @@ def MediaButton(btn,x=10,y=10,height=10,width=10,img="test.jpg",func="play_pause
        else:
            logging.error("function for the button not suported or invalid")
 
-class window(QWidget):
+class window(QMainWindow):
     def __init__(self):
         super().__init__()
         self.setWindowTitle("Sovl Music player")
         self.setWindowFlags(Qt.FramelessWindowHint)
-        self.setAttribute(Qt.WA_TranslucentBackground)
 
     def paintEvent(self,event ):
         qp = QPainter()
@@ -62,3 +61,7 @@ class window(QWidget):
             pixmap.load(image)
             qp.drawPixmap(QPoint(0, 0), pixmap)    
             qp.end()
+            return False,""
+        else:
+#            string=f"background-image : url('{image}');"
+            return True,image

@@ -1,27 +1,27 @@
 [Button]
 x=0
-Image="/home/plof/.config/sovl/play.png"
+Image=/home/plof/.config/sovl/play.png
 
 [Button0]
 x=1
-Image="/home/plof/.config/sovl/next.png"
+Image=/home/plof/.config/sovl/next.png
 
 [Button1]
-Image="/home/plof/.config/sovl/prev.png"
+Image=/home/plof/.config/sovl/prev.png
 x=2
 
 [Button2]
-Image="/home/plof/.config/sovl/random.png"
+Image=/home/plof/.config/sovl/random.png
 x=3
 
 [Button3]
-Image="/home/plof/.config/sovl/repeat.png"
+Image=/home/plof/.config/sovl/repeat.png
 x=4
 
 [Window]
 X=2
 Y=3
-Height=4
-Width=5
-Image="/home/plof/Pictures/1-4.jpg"
-Icon="/home/plof/.config/sovl/icon.jpg"
+Height=400
+Width=500
+Image= /home/plof/Pictures/1-4.jpg
+Icon= /home/plof/.config/sovl/icon.jpg
