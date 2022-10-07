@@ -10,7 +10,7 @@ def read_config(path):
 
     buttons=[]
 
-    window={"X":10,"Y":10,"Height":10,"Width":10,"Image":"Default.jpg"}
+    window={"X":10,"Y":10,"Height":10,"Width":10,"Image":"Default.jpg","Icon":"Default.jpg"}
     config = configparser.ConfigParser()
     config.read(path)
     
@@ -20,13 +20,14 @@ def read_config(path):
         window["Height"]=int(config["Window"]["Height"])
         window["Width"]=int(config["Window"]["Width"])
         window["Image"]=config["Window"]["Func"]
+        window["Icon"]=config["Window"]["Icon"]
     except:
         pass 
 
     for i in config.sections():
         if i=="Window":
             continue
-        buton={"x":10,"y":10,"height":10,"width":10,"func":"play","shape":"Default"}
+        buton={"x":10,"y":10,"height":10,"width":10,"func":"play","shape":"Default","Image":"Default.png"}
         for j in config[i]:
             buton[j]=config[i][j]
         buttons.append(buton)
@@ -39,20 +40,6 @@ def image_resize(image,height,withd):
     new_img_path=path_config+"resized"+image
     new_img.save(new_img_path)
     return(new_img_path)
-
-def config_exist():
-    path=path_config+"config.ini"
-    if os.path.exists(path):
-        window_config,buttons_config=read_config(path)
-    else:
-        os.system("mkdir ~/.config/sovl")
-        os.system("touch ~/.config/sovl/config.ini")
-        f = open(path, "a")
-        f.write("[Window]")
-        f.close()
-        window_config,buttons_config=read_config(path)
-    return window_config,buttons_config
-
 
 def image_config(window_config):
     image_already_rezised=path_config+"resized"+window_config["Image"]

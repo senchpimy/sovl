@@ -5,10 +5,14 @@ from PyQt5.QtGui import QIcon,QPixmap,QPainter
 from PyQt5.QtCore import  Qt, QPoint, QSize
 icon="/usr/bin/sovl/icon.jpg"
 
-def MediaButton(btn,x=10,y=10,height=10,width=10,img="test.jpg",func="play_pause"):
+def MediaButton(btn,x=10,y=10,height=10,width=10,img="test.jpg",func="play_pause",shape="Default"):
        btn.setGeometry(x,y,height,width)
        btn.setIcon(QIcon(img))
-       btn.setStyleSheet("background-image : url({});".format(img))
+       if shape=="Default":
+           btn.setStyleSheet(f"background-image : url({img});")
+       elif shape=="Circle":
+           btn.setStyleSheet(f"background-image : url({img});border-radius : {int(x/2)}; ")
+
        if func=="play_pause":
             btn.clicked.connect(funcs.play_pause)
 
