@@ -33,10 +33,16 @@ def read_config(path):
     for i in config.sections():
         if i=="Window":
             continue
-        buton={"x":10,"y":10,"height":10,"width":10,"func":"play","shape":"Default","Image":"Default.png"}
+        buton={"x":10,"y":10,"height":10,"width":10,"func":"play_pause","shape":"Default","image":"Default.png"}
         for j in config[i]:
             buton[j]=config[i][j]
         buttons.append(buton)
+
+    for i in buttons:
+        i["x"]=int(i["x"])
+        i["y"]=int(i["y"])
+        i["height"]=int(i["height"])
+        i["width"]=int(i["width"])
 
     return window,buttons
 

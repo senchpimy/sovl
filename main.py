@@ -7,8 +7,7 @@ import objects
 import config
 
 window=objects.window()
-button1 = QPushButton(window)
-usrconfig,buttons=config.read_config("/home/plof/.config/sovl/config.ini")
+usrconfig,buttonsConfig=config.read_config("/home/plof/.config/sovl/config.ini")
 usrconfig["Image"]=config.image_config(usrconfig)
 background,string=window.WindowConfig(usrconfig)
 
@@ -21,6 +20,11 @@ if background :
     }}
 """
     app.setStyleSheet(stylesheet)
+
+for i in buttonsConfig:
+    objects.MediaButton(QPushButton(window),i["x"],i["y"],i["height"],i["width"],i["image"],i["func"],i["shape"])
+#    print(i["x"],i["y"],i["height"],i["width"],i["Image"],i["func"],i["shape"])
+#    print(type(i["x"]),type(i["y"]),type(i["height"]),type(i["width"]),type(i["Image"]),type(i["func"]),type(i["shape"]))
 
 window.show()
   

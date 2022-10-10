@@ -24,3 +24,5 @@ def random():
 def shuffle():
     os.system("mpc shuffle")
 
+def repeat():
+    os.system("mpc repeat")

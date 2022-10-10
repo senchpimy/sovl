@@ -1,22 +1,37 @@
 [Button]
 x=0
-Image=/home/plof/.config/sovl/play.png
+Height=30
+width=30
+Image= /home/plof/.config/sovl/play.png
+func= play_pause
 
 [Button0]
-x=1
-Image=/home/plof/.config/sovl/next.png
+x=40
+Height=30
+width=30
+Image= /home/plof/.config/sovl/next.png
+func= next
 
 [Button1]
-Image=/home/plof/.config/sovl/prev.png
-x=2
+Image= /home/plof/.config/sovl/prev.png
+x=60
+func= prev
+Height=30
+width=30
 
 [Button2]
-Image=/home/plof/.config/sovl/random.png
-x=3
+Height=30
+width=30
+Image= /home/plof/.config/sovl/random.png
+x=90
+func= random
 
 [Button3]
-Image=/home/plof/.config/sovl/repeat.png
-x=4
+Image= /home/plof/.config/sovl/repeat.png
+x=150
+func= repeat
+Height= 60
+width= 30
 
 [Window]
 X=2

@@ -31,6 +31,9 @@ def MediaButton(btn,x=10,y=10,height=10,width=10,img="test.jpg",func="play_pause
        elif func=="random":
            btn.clicked.connect(funcs.random)
 
+       elif func=="repeat":
+           btn.clicked.connect(funcs.random)
+
        else:
            logging.error("function for the button not suported or invalid")
 
