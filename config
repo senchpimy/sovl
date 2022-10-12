@@ -1,5 +1,6 @@
 [Button]
 x=0
+y=29
 Height=30
 width=30
 Image= /home/plof/.config/sovl/play.png
