@@ -1,4 +1,8 @@
-# Config
+# SOVL
+
+### A mpc GUI
+---
+## Config
 ---
 Window configuration
 
@@ -25,4 +29,6 @@ Heigth="Heigth of the button inside the  window"	***int***
 Width="Width of the button inside the  window"	***int***
 
 Image="Background image of the Button"     ***Absolute path***
+
+func= "Function for the button"  ***play_pause, shuffle, prev, next, random, repeat***
 
