@@ -32,7 +32,7 @@ Image="Background image of the Button"     ***Absolute path***
 
 func= "Function for the button"  ***play_pause, shuffle, prev, next, random, repeat***
 
-**[Slider]** *** For Volume control, no configuration needed (for now) ***
+**[Slider]** ***For Volume control, no configuration needed (for now)***
 
 
 ## Optional
