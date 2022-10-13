@@ -26,3 +26,10 @@ def shuffle():
 
 def repeat():
     os.system("mpc repeat")
+
+def get_vol():
+    vol=subprocess.run(['pamixer','--get-volume'],stdout=subprocess.PIPE)
+    return int(vol.stdout.decode('utf-8'))
+
+def set_volume(val):
+    os.system(f"pamixer --set-volume {val}")

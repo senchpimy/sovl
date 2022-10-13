@@ -31,7 +31,7 @@ def read_config(path):
 #        pass 
 
     for i in config.sections():
-        if i=="Window":
+        if i.startswith("Button")==False:
             continue
         buton={"x":10,"y":10,"height":10,"width":10,"func":"play_pause","shape":"Default","image":"Default.png"}
         for j in config[i]:
@@ -44,7 +44,9 @@ def read_config(path):
         i["height"]=int(i["height"])
         i["width"]=int(i["width"])
 
-    return window,buttons
+    slider = True if "Slider" in config else False
+
+    return window,buttons,slider
 
 def image_resize(image,height,withd):
     img=Image.open(image)

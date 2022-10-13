@@ -35,9 +35,11 @@ Height= 60
 width= 30
 
 [Window]
-X=2
-Y=3
-Height=400
-Width=500
+X=400
+Y=400
+Height=200
+Width=100
 Image= /home/plof/Pictures/josukeHirashigatachud.png
 Icon= /home/plof/.config/sovl/icon.jpg
+
+[Slider]

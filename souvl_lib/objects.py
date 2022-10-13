@@ -1,6 +1,6 @@
 import funcs
 import logging
-from PyQt5.QtWidgets import  QMainWindow
+from PyQt5.QtWidgets import  QMainWindow, QSlider
 from PyQt5.QtGui import QIcon,QPixmap,QPainter
 from PyQt5.QtCore import  Qt, QPoint
 icon="/usr/bin/sovl/icon.jpg"
@@ -61,3 +61,28 @@ class window(QMainWindow):
             return False,""
         else:
             return True,image
+
+#class SliderVol(QSlider):
+#    def __init__(self):
+#        super().__init__()
+        #self.setMinimum(0)
+        #self.setMinimum(100)
+        #self.setTickInterval(100)
+        #self.setValue(funcs.get_vol())
+        #self.valueChanged[int].connect(funcs.set_volume(self.value()))
+
+def Slider(slider):
+        slider.setMinimum(0)
+        slider.setMaximum(100)
+        slider.setTickInterval(100)
+        slider.setValue(funcs.get_vol())
+        slider.valueChanged[int].connect(funcs.set_volume)
+        return slider
+
+#    def volume(self):
+#        val=int(self.value())
+#        funcs.set_volume(val)
+
+
+
+
