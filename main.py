@@ -2,12 +2,13 @@
 import sys
 sys.path.insert(1, '/home/plof/Documents/PythonProjects/sovl/souvl_lib')
 from PyQt5.QtWidgets import QApplication, QPushButton, QSlider
+from PyQt5.QtCore import Qt
 app = QApplication([])
 import objects
 import config
 
 window=objects.window()
-windowconfig, buttonsConfig, slider=config.read_config("/home/plof/.config/sovl/config.ini")
+windowconfig, buttonsConfig, slidersConfig=config.read_config("/home/plof/.config/sovl/config.ini")
 windowconfig["Image"]=config.image_config(windowconfig)
 background,string=window.WindowConfig(windowconfig)
 
@@ -23,12 +24,16 @@ if background :
 
 for i in buttonsConfig:
     objects.MediaButton(QPushButton(window),i["x"],i["y"],i["height"],i["width"],i["image"],i["func"],i["shape"])
-#    print(i["x"],i["y"],i["height"],i["width"],i["Image"],i["func"],i["shape"])
-#    print(type(i["x"]),type(i["y"]),type(i["height"]),type(i["width"]),type(i["Image"]),type(i["func"]),type(i["shape"]))
-if slider:
-    slider=objects.Slider(QSlider(window))
-    slider.setGeometry(30, 40, 200, 30)
+
+
+for j in slidersConfig:
+    if j["position"]=="Horizontal":
+        objects.Slider(QSlider(Qt.Orientation.Horizontal,window), j)
+    elif j["position"]=="Vertical":
+        objects.Slider(QSlider(Qt.Orientation.Vertical,window), j)
+    else:
+        print("Position not defined")
+
 
 window.show()
 sys.exit(app.exec())
-

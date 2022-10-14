@@ -9,6 +9,7 @@ path_config=str(os.getenv("HOME"))+"/.config/sovl/"
 def read_config(path):
 
     buttons=[]
+    sliders=[]
 
     window={"X":10,"Y":10,"Height":10,"Width":10,"Image":"Default.jpg","Icon":"Default.jpg"}
     config = configparser.RawConfigParser()
@@ -19,24 +20,19 @@ def read_config(path):
     window["Width"]=int(config["Window"]["Width"])
     window["Image"]=config["Window"]["Image"]
     window["Icon"]=config["Window"]["Icon"]
-    
-#    try:
-#        window["X"]=int(config["Window"]["X"])
-#        window["Y"]=int(config["Window"]["Y"])
-#        window["Height"]=int(config["Window"]["Height"])
-#        window["Width"]=int(config["Window"]["Width"])
-#        window["Image"]=config["Window"]["Func"]
-#        window["Icon"]=config["Window"]["Icon"]
-#    except:
-#        pass 
 
     for i in config.sections():
-        if i.startswith("Button")==False:
-            continue
-        buton={"x":10,"y":10,"height":10,"width":10,"func":"play_pause","shape":"Default","image":"Default.png"}
-        for j in config[i]:
-            buton[j]=config[i][j]
-        buttons.append(buton)
+        if i.startswith("Button"):
+            buton={"x":10,"y":10,"height":10,"width":10,"func":"play_pause","shape":"Default","image":"Default.png"}
+            for j in config[i]:
+                buton[j]=config[i][j]
+            buttons.append(buton)
+        elif i.startswith("Slider"):
+            slider={"position":"Horizontal","x":10,"y":10,"height":40,"width":10,"func":"vol"}
+            for j in config[i]:
+                slider[j]=config[i][j]
+            sliders.append(slider)
+
 
     for i in buttons:
         i["x"]=int(i["x"])
@@ -44,9 +40,13 @@ def read_config(path):
         i["height"]=int(i["height"])
         i["width"]=int(i["width"])
 
-    slider = True if "Slider" in config else False
+    for j in sliders:
+        j["x"]=int(j["x"])
+        j["y"]=int(j["y"])
+        j["height"]=int(j["height"])
+        j["width"]=int(j["width"])
 
-    return window,buttons,slider
+    return window,buttons,sliders
 
 def image_resize(image,height,withd):
     img=Image.open(image)
