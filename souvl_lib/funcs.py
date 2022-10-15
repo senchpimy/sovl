@@ -34,5 +34,5 @@ def get_vol():
 def set_volume(val):
     os.system(f"pamixer --set-volume {val}")
 
-def Song_seek(val):
+def song_seek(val):
     os.system(f"mpc seek {val}%")

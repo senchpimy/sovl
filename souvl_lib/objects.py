@@ -63,10 +63,15 @@ class window(QMainWindow):
             return True,image
 
 def Slider(slider,config):
+    slider.setGeometry(config["x"], config["y"], config["height"],config["width"])
+    slider.setMinimum(0)
+    slider.setMaximum(100)
+
     if config["func"]=="vol":
-        slider.setMinimum(0)
-        slider.setMaximum(100)
-        slider.setTickInterval(100)
+        slider.setTickInterval(50)
         slider.setValue(funcs.get_vol())
         slider.valueChanged[int].connect(funcs.set_volume)
-        slider.setGeometry(config["x"], config["y"], config["height"],config["width"])
+
+    elif config["func"]=="progres":
+        slider.setTickInterval(100)
+        slider.valueChanged[int].connect(funcs.song_seek)
