@@ -36,3 +36,8 @@ def set_volume(val):
 
 def song_seek(val):
     os.system(f"mpc seek {val}%")
+
+def get_progress():
+    vol=subprocess.run(["mpc"],stdout=subprocess.PIPE)
+    time=vol.stdout.decode('utf-8').splitlines()[1].split()[-1][1:-2]
+    return int(time)

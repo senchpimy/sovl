@@ -49,3 +49,10 @@ y= 280
 x= 10
 Height=175
 Width=10
+
+[Slider2]
+y= 200
+x= 10
+Height=175
+Width=10
+func= progress
