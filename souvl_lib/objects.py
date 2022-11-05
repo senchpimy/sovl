@@ -1,11 +1,14 @@
 import funcs
 from threading import Thread
+from threading import Event
 import logging
-from PyQt5.QtWidgets import  QMainWindow, QSlider
+from PyQt5.QtWidgets import  QMainWindow
 from PyQt5.QtGui import QIcon,QPixmap,QPainter
 from PyQt5.QtCore import  Qt, QPoint
 import time
 icon="/usr/bin/sovl/icon.jpg"
+
+StopTheProcess=Event()
 
 def MediaButton(btn,x=10,y=10,height=10,width=10,img="test.jpg",func="play_pause",shape="Default"):
        btn.setGeometry(x,y,height,width)
@@ -64,10 +67,11 @@ class window(QMainWindow):
         else:
             return True,image
 
-def a(slider):
+def a(slider, stopthelopp):
     while True:
         slider.setValue(funcs.get_progress())
         time.sleep(1)
+        if stopthelopp.is_set():break
 
 def Slider(slider,config):
     slider.setGeometry(config["x"], config["y"], config["height"],config["width"])
@@ -83,5 +87,5 @@ def Slider(slider,config):
         slider.setTickInterval(100)
         slider.sliderReleased.connect(lambda: funcs.song_seek(slider.value()))
         slider.setValue(funcs.get_progress())
-        ab=Thread(target=a,args=(slider,))
+        ab=Thread(target=a,args=(slider,StopTheProcess))
         ab.start()

@@ -36,4 +36,5 @@ for j in slidersConfig:
 
 
 window.show()
-sys.exit(app.exec())
+app.exec()
+sys.exit(objects.StopTheProcess.set())
