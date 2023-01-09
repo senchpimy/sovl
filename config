@@ -1,5 +1,5 @@
 [Button]
-x=0
+x=90
 y=80
 Height=20
 width=20
@@ -16,11 +16,12 @@ func= next
 
 [Button1]
 Image= /home/plof/.config/sovl/prev.png
-x=60
+x=50
 y=80
 func= prev
-Height=20
-width=20
+Height=30
+width=30
+shape=Circle
 
 [Button2]
 Height=30
@@ -49,6 +50,7 @@ y= 280
 x= 10
 Height=175
 Width=10
+color=#fcba03
 
 [Slider2]
 y= 200

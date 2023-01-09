@@ -12,11 +12,14 @@ StopTheProcess=Event()
 
 def MediaButton(btn,x=10,y=10,height=10,width=10,img="test.jpg",func="play_pause",shape="Default"):
        btn.setGeometry(x,y,height,width)
-       btn.setIcon(QIcon(img))
        if shape=="Default":
-           btn.setStyleSheet(f"background-image : url({img});")
+           #Fix backgorund image not just as icon
+           #Pressed image?
+           btn.setIcon(QIcon(img))
+           btn.setStyleSheet(f"background-image : url({img});border:0px")
        elif shape=="Circle":
-           btn.setStyleSheet(f"background-image : url({img});border-radius : {int(x/2)}; ")
+           btn.setIcon(QIcon(img))
+           btn.setStyleSheet(f"background-image : url({img});border:0px;border-radius:{width/2}px")
 
        if func=="play_pause":
             btn.clicked.connect(funcs.play_pause)
@@ -77,6 +80,16 @@ def Slider(slider,config):
     slider.setGeometry(config["x"], config["y"], config["height"],config["width"])
     slider.setMinimum(0)
     slider.setMaximum(100)
+    if config["color"]!=None:
+        if config["position"]=="Horizontal":
+            #hover y pressed
+            slider.setStyleSheet(f"""QSlider::groove {{ background: {config["color"]}; border-radius:5px}}
+                             QSlider::handle {{ background: #2e1e7d; border-radius: 5px; height:{config["width"]}; width:{config["width"]} }}
+                             """)
+        else:
+            slider.setStyleSheet(f"""QSlider::groove {{ background: {config["color"]}; border-radius:5px}}
+                             QSlider::handle {{ background: #2e1e7d; border-radius: 5px; height:{config["height"]}; width:{config["height"]} }}
+                             """)
 
     if config["func"]=="vol":
         slider.setTickInterval(50)
