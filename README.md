@@ -32,7 +32,19 @@ Image="Background image of the Button"     ***Absolute path***
 
 func= "Function for the button"  ***play_pause, shuffle, prev, next, random, repeat***
 
-**[Slider]** ***For Volume control, no configuration needed (for now)***
+**[Slider]** 
+
+x="location of the slider inside the window "	***int***
+
+y="location of the slider inside the  window "	***int***
+
+Heigth="Heigth of the slider inside the  window"	***int***
+
+Width="Width of the slider inside the  window"	***int***
+
+func= "Function for the button"  ***progress/vol ***
+
+color= "Any color in rgb, hex or name", ***Change the color of the bar***
 
 
 ## Optional
