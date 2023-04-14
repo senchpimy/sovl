@@ -28,7 +28,7 @@ def read_config(path):
                 buton[j]=config[i][j]
             buttons.append(buton)
         elif i.startswith("Slider"):
-            slider={"position":"Horizontal","x":10,"y":10,"height":40,"width":10,"func":"vol","color":None}
+            slider={"position":"Horizontal","x":10,"y":10,"height":40,"width":10,"func":"vol","color":"","border-radius-handle":5,"border-radius":5}
             for j in config[i]:
                 slider[j]=config[i][j]
             sliders.append(slider)
@@ -45,7 +45,10 @@ def read_config(path):
         j["y"]=int(j["y"])
         j["height"]=int(j["height"])
         j["width"]=int(j["width"])
-        j["color"]=j["color"]
+        if len(j["color"])>0:
+            j["color"]=f"background:{j['color']};"
+        else:
+            j["color"]=f"background:grey;"
 
     return window,buttons,sliders
 

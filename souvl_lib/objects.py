@@ -80,16 +80,20 @@ def Slider(slider,config):
     slider.setGeometry(config["x"], config["y"], config["height"],config["width"])
     slider.setMinimum(0)
     slider.setMaximum(100)
-    if config["color"]!=None:
-        if config["position"]=="Horizontal":
-            #hover y pressed
-            slider.setStyleSheet(f"""QSlider::groove {{ background: {config["color"]}; border-radius:5px}}
-                             QSlider::handle {{ background: #2e1e7d; border-radius: 5px; height:{config["width"]}; width:{config["width"]} }}
-                             """)
-        else:
-            slider.setStyleSheet(f"""QSlider::groove {{ background: {config["color"]}; border-radius:5px}}
-                             QSlider::handle {{ background: #2e1e7d; border-radius: 5px; height:{config["height"]}; width:{config["height"]} }}
-                             """)
+    border_radius_handle=config["border-radius-handle"]
+    border_radius=config["border-radius"]
+    if config["position"]=="Horizontal":
+        #hover y pressed
+        print(f"""QSlider::groove {{ {config["color"]} border-radius:{border_radius}px}}
+                         QSlider::handle {{ background: #2e1e7d; border-radius: {border_radius_handle}px; height:{config["width"]}; width:{config["width"]} }}
+                         """)
+        slider.setStyleSheet(f"""QSlider::groove {{{config["color"]}border-radius:{border_radius}px}}
+                         QSlider::handle {{ background: #2e1e7d; border-radius: {border_radius_handle}px; height:{config["width"]}; width:{config["width"]} }}
+                         """)
+    else:
+        slider.setStyleSheet(f"""QSlider::groove {{ background: {config["color"]}; border-radius:{border_radius}px}}
+                         QSlider::handle {{ background: #2e1e7d; border-radius: {border_radius_handle}px; height:{config["height"]}; width:{config["height"]} }}
+                         """)
 
     if config["func"]=="vol":
         slider.setTickInterval(50)

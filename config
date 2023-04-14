@@ -1,8 +1,8 @@
 [Button]
 x=90
 y=80
-Height=20
-width=20
+Height=30
+width=30
 Image= /home/plof/.config/sovl/play.png
 func= play_pause
 
@@ -51,6 +51,7 @@ x= 10
 Height=175
 Width=10
 color=#fcba03
+border-radius-handle=0
 
 [Slider2]
 y= 200
