@@ -62,10 +62,10 @@ class window(QMainWindow):
     def WindowConfig(self,config):
         image=config["Image"]
         self.setWindowIcon(QIcon(icon))
-        self.setGeometry(config["X"], config["Y"], config["Height"],config["Width"])
+        self.setGeometry(config["X"], config["Y"], config["Width"],config["Height"])
+        self.Image=image
         if image.endswith(".png"):
             self.setAttribute(Qt.WA_TranslucentBackground)
-            self.Image=image
             return False,""
         else:
             return True,image
@@ -84,9 +84,6 @@ def Slider(slider,config):
     border_radius=config["border-radius"]
     if config["position"]=="Horizontal":
         #hover y pressed
-        print(f"""QSlider::groove {{ {config["color"]} border-radius:{border_radius}px}}
-                         QSlider::handle {{ background: #2e1e7d; border-radius: {border_radius_handle}px; height:{config["width"]}; width:{config["width"]} }}
-                         """)
         slider.setStyleSheet(f"""QSlider::groove {{{config["color"]}border-radius:{border_radius}px}}
                          QSlider::handle {{ background: #2e1e7d; border-radius: {border_radius_handle}px; height:{config["width"]}; width:{config["width"]} }}
                          """)

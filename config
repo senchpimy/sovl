@@ -1,6 +1,6 @@
 [Button]
 x=90
-y=80
+y=150
 Height=30
 width=30
 Image= /home/plof/.config/sovl/play.png
@@ -8,16 +8,16 @@ func= play_pause
 
 [Button0]
 x=30
-y=80
-Height=20
-width=20
+y=150
+Height=30
+width=30
 Image= /home/plof/.config/sovl/next.png
 func= next
 
 [Button1]
 Image= /home/plof/.config/sovl/prev.png
-x=50
-y=80
+x=150
+y=150
 func= prev
 Height=30
 width=30
@@ -27,22 +27,22 @@ shape=Circle
 Height=30
 width=30
 Image= /home/plof/.config/sovl/random.png
-x=90
+x=0
 func= random
 
 [Button3]
 Image= /home/plof/.config/sovl/repeat.png
 x=150
 func= repeat
-Height= 60
+Height= 30
 width= 30
 
 [Window]
 X=300
 Y=300
-Height=200
+Height=300
 Width=300
-Image= /home/plof/Pictures/josukeHirashigatachud.png
+Image= /home/plof/Pictures/1-4.jpg
 Icon= /home/plof/.config/sovl/icon.jpg
 
 [Slider]
@@ -59,3 +59,4 @@ x= 10
 Height=175
 Width=10
 func= progress
+border-radius=0

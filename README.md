@@ -1,6 +1,12 @@
 # SOVL
 
 ### A mpc GUI
+
+Change / add any button or slider you want editing the config file
+Change the function / look of every widget
+
+![SOVL](./sovl1.png)
+![SOVL2](./sovl2.png)
 ---
 ## Config
 ---
@@ -45,6 +51,10 @@ Width="Width of the slider inside the  window"	***int***
 func= "Function for the button"  ***progress/vol ***
 
 color= "Any color in rgb, hex or name", ***Change the color of the bar***
+
+border_radious="Radious of the slider" ***int***
+
+border_radious_handles="Radious of the handler" ***int***
 
 
 ## Optional
